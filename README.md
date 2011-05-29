@@ -51,6 +51,7 @@ Optional: If you want to see the demo page, add the following to your routing.ym
 Then you should be able to go to http://your.site.com/gchart/demo
 
 Don't forget to include the required javascript in your layout, for example:
+
         <script type="text/javascript">
             //adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
