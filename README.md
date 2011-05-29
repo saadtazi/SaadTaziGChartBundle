@@ -26,26 +26,26 @@ The easiest way is to install it is to git clone or git add module:
 
 Then add it to your app/autoload.php and app/AppKernel.php
 ```php
-//in app/Autoload.php
-$loader->registerNamespaces(array(     ...
-    'SaadTazi'         => __DIR__.'/../src',
-    ..
-));
+    //in app/Autoload.php
+    $loader->registerNamespaces(array(     ...
+        'SaadTazi'         => __DIR__.'/../src',
+        ..
+    ));
   
-//in app/AppKernel.php
-      $bundles = array(
-          ...
-          new SaadTazi\GChartBundle\GChartBundle(),
-          ...
-      );
+    //in app/AppKernel.php
+          $bundles = array(
+              ...
+              new SaadTazi\GChartBundle\GChartBundle(),
+              ...
+          );
 ```
 
 Optional: If you want to see the demo page, add the following to your routing.yml (requires Twig):
 ```yaml
-_demo:
-    resource: "@GChartBundle/Resources/config/routing.yml"
-    type:     yaml
-    prefix:   /gchart
+    _demo:
+        resource: "@GChartBundle/Resources/config/routing.yml"
+        type:     yaml
+        prefix:   /gchart
 ```
 Then you should be able to go to http://your.site.com/gchart/demo
 
