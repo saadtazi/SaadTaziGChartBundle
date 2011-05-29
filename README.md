@@ -3,15 +3,15 @@ What is it?
 This is a super simple Bundle that faciliatate the [Google Chart Image API](http://code.google.com/apis/chart/image/) and the [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html).
 
 It allows to render:
-* QRCode 
-* Pie Chart (3 ways: canvas or svg, simple image from url, simple 3d image from url)
-* Column Chart
-* Bar Chart
-* Area Chart
-* scatter Chart
-* Combo Chart
-* Table
-* Gauge
+  * QRCode 
+  * Pie Chart (3 ways: canvas or svg, simple image from url, simple 3d image from url)
+  * Column Chart
+  * Bar Chart
+  * Area Chart
+  * scatter Chart
+  * Combo Chart
+  * Table
+  * Gauge
 
 Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/image/terms.html) and [Chart tool terms](http://code.google.com/apis/chart/interactive/terms.html) before using that bundle. 
 
