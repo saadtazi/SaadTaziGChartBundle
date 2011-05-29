@@ -1,0 +1,41 @@
+{% extends "GChartBundle::layout.html.twig" %}
+
+{% block content %}
+
+<h2>QR Code Demo</h2>
+<img src="{{ gchart_get_qrcode_url('hello Montréal') }}"/>
+<hr/>
+<img src="{{ gchart_get_qrcode_url('hello Montréal', {'width':200, 'height': 200, 'encoding': 'ISO-8859-1', 'correctionLevel': 'M'}) }}"/>
+
+<hr/>
+<h2>Visualization Chart Demo</h2>
+{{ gchart_pie_chart(dataTable1, 'chart1', 400, 200, 'coucou') }}
+<hr/>
+{{ gchart_column_chart(dataTable2, 'chart2', 400, 200, 'coucou') }}
+
+<hr/>
+{{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou') }}
+<hr/>
+{{ gchart_bar_chart(dataTable2, 'chart4', 400, 200, 'coucou') }}
+<hr/>
+{{ gchart_bar_chart(dataTable5, 'chartfromMatrix5', 400, 200, 'from table5') }}
+<hr/>
+{{ gchart_bar_chart(dataTable6, 'chartfromMatrix6', 400, 200, 'from table6') }}
+
+<hr/>
+{{ gchart_area_chart(dataTable2, 'chart5', 400, 200, 'coucou') }}
+<hr/>
+{{ gchart_scatter_chart(dataTable4, 'chart6', 400, 200, 'coucou', 'x label', 'y label') }}
+<hr/>
+{{ gchart_combo_chart(dataTable2, 'chart7', 400, 200, 'line', 'combo', {'series': {1: {'type': 'bars'} } }) }}
+
+<hr/>
+{{ gchart_gauge(dataTable1, 'gauge1', 400, 200, 'coucou') }}
+<hr/>
+{{ gchart_table(dataTable2, 'table1') }}
+<hr/>
+<h2>Simple Chart Demo</h2>
+<img src="{{ gchart_get_pie_chart_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
+<hr/>
+<img src="{{ gchart_get_pie_chart3d_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
+{% endblock %}

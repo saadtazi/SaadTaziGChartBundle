@@ -1,0 +1,6 @@
+gchart_demo:
+    pattern:  /demo
+    defaults: { _controller: GChartBundle:Demo:demo }
+gchart_demo2:
+    pattern:  /demo2
+    defaults: { _controller: GChartBundle:Demo:demo2 }
