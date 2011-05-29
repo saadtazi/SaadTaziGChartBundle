@@ -18,6 +18,11 @@ Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/ima
 
 It also contains some Twig extension that facilitates the integration.
 
+Demo
+----
+
+http://blog.fruitsoftware.com/a-propos/demo-gchartbundle/
+
 How to install it?
 ------------------
 
