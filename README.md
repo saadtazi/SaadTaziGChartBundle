@@ -55,7 +55,7 @@ Don't forget to include the required javascript in your layout, for example:
         <script type="text/javascript">
             //adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
-            //jquery mini-dependency
+            //jquery mini-dependency. If you have it already included, just remove that line...
             google.load('jquery', '1.6.0');
         </script> 
 
