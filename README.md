@@ -3,6 +3,7 @@ What is it?
 This is a super simple Bundle that faciliatate the [Google Chart Image API](http://code.google.com/apis/chart/image/) and the [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html).
 
 It allows to render:
+
   * QRCode 
   * Pie Chart (3 ways: canvas or svg, simple image from url, simple 3d image from url)
   * Column Chart
