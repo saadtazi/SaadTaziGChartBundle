@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Demo Bundle{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
+            google.load('jquery', '1.6.0');
+        </script>
+    </head>
+    <body>
+            
+            <header>
+                <h1>GChartBundle Demo</h2>
+            </header>
+
+            {% if app.session.flash('notice') %}
+                <div class="flash-message">
+                    <em>Notice</em>: {{ app.session.flash('notice') }}
+                </div>
+            {% endif %}
+
+            
+
+            <div class="symfony-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+
+        </div>
+    </body>
+</html>

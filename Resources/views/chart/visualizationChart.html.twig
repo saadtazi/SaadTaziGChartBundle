@@ -1,0 +1,10 @@
+<script type="text/javascript">
+$(function() {
+    var data = new google.visualization.DataTable({{ data | json_encode | raw }});
+  
+    // Create and draw the visualization.
+    var chart = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
+    chart.draw(data, {{ config | json_encode | raw }});
+});
+</script>
+<div id="{{ id }}">&nbsp;</div>
