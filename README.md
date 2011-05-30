@@ -32,6 +32,8 @@ The easiest way is to install it is to git clone or git add module:
 
 Then add it to your app/autoload.php and app/AppKernel.php
 
+``` php
+<?php
     //in app/Autoload.php
     $loader->registerNamespaces(array(     ...
         'SaadTazi'         => __DIR__.'/../src',
@@ -44,25 +46,29 @@ Then add it to your app/autoload.php and app/AppKernel.php
               new SaadTazi\GChartBundle\GChartBundle(),
               ...
           );
-
+```
 
 Optional: If you want to see the demo page, add the following to your routing.yml (requires Twig):
 
+``` yaml
     _demo:
         resource: "@GChartBundle/Resources/config/routing.yml"
         type:     yaml
         prefix:   /gchart
+```
 
 Then you should be able to go to http://your.site.com/gchart/demo
 
 Don't forget to include the required javascript in your layout, for example:
 
+```
         <script type="text/javascript">
             //adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
             //jquery mini-dependency. If you have it already included, just remove that line...
             google.load('jquery', '1.6.0');
         </script> 
+```
 
 How to use it?
 --------------
@@ -73,7 +79,7 @@ and Resources\views\Demo\demo.html.twig
 Notes
 -----
 I implemented almost all the corechart chart types from the Google Chart Tool.
-But I only implemented 3 Google Chart Image types, because <strike>they are ugly</strike> almost all of them can be built using the Google Chart Tool.
+But I only implemented 3 Google Chart Image types, because (<strike>they are ugly and</strike>) almost all of them can be built using the Google Chart Tool.
 
 You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
 But you will probably find it a little bit boring.
