@@ -124,28 +124,60 @@ class DataTable {
     
     /**
      * Return an array representation of the DataTable (to JSON)
+     * It doesn't try to match the column ids to data ids
+     * so all the dataRows cell needs to be defined (put null if you need)
      * @return array
      */
     public function toArray() {
-        $colsArray = $this->cols;
-        array_walk($colsArray, function (&$item) {
-            $item = $item->toArray();
-        });
+        $colsArray = $this->getColArray();
+        
         $rowsArray = $this->rows;
+        
         array_walk($rowsArray, function (&$item) {
             $item = array('c' => $item->toArray());
         });
         
         //remove nulls
+        return self::getFilteredArray($colsArray, $rowsArray, $this->p);
+        
+    }
+    
+    /**
+     * Return an array representation of the DataTable (to JSON)
+     * It doesn't try to match the column ids to data ids
+     * so all the dataRows cell needs to be defined (put null if you need)
+     * @return array
+     */
+    public function toStrictArray() {
+        $colsArray = $this->getColArray();
+        
+        $rowsArray = $this->rows;
+        
+        array_walk($rowsArray, function (&$item, $key, $cols) {
+            $item = array('c' => $item->toMatchingArray($cols));
+        }, $this->cols);
+
+        return self::getFilteredArray($colsArray, $rowsArray, $this->p);
+        
+    }
+    
+    protected function getColArray() {
+         $colsArray = $this->cols;
+        array_walk($colsArray, function (&$item) {
+            $item = $item->toArray();
+        });
+        return $colsArray;
+    }
+    
+    protected static function getFilteredArray($cols, $rows, $p) {
         return array_filter(
                 array(
-                    'cols' => $colsArray,
-                    'rows' => $rowsArray,
-                    'p'    => $this->p
+                    'cols' => $cols,
+                    'rows' => $rows,
+                    'p'    => $p
                 )
         );
     }
-    
     /** 
      * Returns an array that contains the values for a specific column
      * @param integer $pos
@@ -153,8 +185,8 @@ class DataTable {
      */
     public function getValuesForPosition($pos) {
         $arr = array();
-        foreach ($this->rows as $row) {
-            $arr[] = $row->getValueForPosition($pos);
+        foreach ($this->rows as $key => $row) {
+            $arr[$key] = $row->getValueForPosition($pos);
         }
         return $arr;
     }

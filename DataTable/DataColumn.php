@@ -47,6 +47,13 @@ class DataColumn {
     }
     
     /**
+     * Returns the id of the column
+     * @return mixed string 
+     */
+    public function getId() {
+        return $this->id;
+    }
+    /**
      * Returns the label of the column
      * @return string 
      */

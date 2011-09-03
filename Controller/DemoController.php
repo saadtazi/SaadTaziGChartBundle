@@ -128,9 +128,30 @@ class DemoController extends Controller
         );
         
         
+        
+        $myArray[0]['idMonth'] = 'January';
+$myArray[0]['idOne'] = 1;
+$myArray[0]['idTwo'] = 2;
+$myArray[1]['idMonth'] = 'February';
+$myArray[1]['idThree'] = 33;
+$myArray[2]['idMonth'] = 'March';
+$myArray[2]['idTwo'] = 2;
+$myArray[2]['idOne'] = 1;
+$myArray[2]['idThree'] = 33;
+//------------
+$dt = new DataTable\DataTable();
+$dt->addColumn('idMonth', 'Months', 'string');
+$dt->addColumn('idOne', 'One', 'number');
+$dt->addColumn('idTwo', 'Two', 'number');
+$dt->addColumn('idThree', 'Three', 'number');
+//------------
+$dt->addRows($myArray);
+        
+        
         return $this->render(
                     'GChartBundle:Demo:demo.html.twig', 
                     array(
+                        'dt' => $dt->toStrictArray(),
                         'dataTable1' => $dataTable1->toArray(),
                         'rawDataTable1' => $dataTable1,
                         'dataTable2' => $dataTable2->toArray(),
@@ -142,6 +163,32 @@ class DemoController extends Controller
                 );
         
     }
-
+    
+    public function demo2Action() {
+        $myArray[0]['idMonth'] = 'January';
+        $myArray[0]['idOne'] = 1;
+        $myArray[0]['idTwo'] = 2;
+        $myArray[1]['idMonth'] = 'February';
+        $myArray[1]['idThree'] = 33;
+        $myArray[2]['idMonth'] = 'March';
+        $myArray[2]['idTwo'] = 2;
+        $myArray[2]['idOne'] = 1;
+        $myArray[2]['idThree'] = 33;
+        //------------
+        $dt = new DataTable\DataTable();
+        $dt->addColumn('idMonth', 'Months', 'string');
+        $dt->addColumn('idOne', 'One', 'number');
+        $dt->addColumn('idTwo', 'Two', 'number');
+        $dt->addColumn('idThree', 'Three', 'number');
+        //------------
+        $dt->addRows($myArray);
+        return $this->render(
+                    'GChartBundle:Demo:demo2.html.twig', 
+                    array(
+                        'dt' => $dt->toStrictArray(false)
+                    )
+                );
+        
+    }
 
 }

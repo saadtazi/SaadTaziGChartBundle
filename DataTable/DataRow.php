@@ -18,12 +18,12 @@ class DataRow {
      */
     public function __construct(array $cells) {
         //var_dump($cells);die();
-        foreach($cells as $cell) {
+        foreach($cells as $key => $cell) {
             //if it's an array, then v, f, p
             if (is_array($cell)) {
-                $this->cells[] = DataCell::fromArray($cell);
+                $this->cells[$key] = DataCell::fromArray($cell);
             } else {
-                $this->cells[] = new DataCell($cell);
+                $this->cells[$key] = new DataCell($cell);
             }
         }
     }
@@ -43,8 +43,23 @@ class DataRow {
      */
     public function toArray() {
         $arr = array();
-        foreach ($this->cells as $cell) {
+        foreach ($this->cells as $key => $cell) {
             $arr[] = $cell->toArray();
+        }
+        return $arr;
+    }
+    
+    /**
+     * returns an array representation of the instance
+     * @return array 
+     */
+    public function toMatchingArray($colsArr) {
+        $arr = array();
+        //var_dump($colsArr);die();
+        foreach ($colsArr as $key => $col) {
+            
+            $arr[] = $this->getCellArrayForPosition($col->getId());
+            
         }
         return $arr;
     }
@@ -56,6 +71,10 @@ class DataRow {
      */
     public function getValueForPosition($pos) {
         return (isset($this->cells[$pos])) ? $this->cells[$pos]->getValue(): null;
+    }
+    
+    public function getCellArrayForPosition($pos) {
+        return (isset($this->cells[$pos])) ? $this->cells[$pos]->toArray(): array('v' => null);
     }
     
 }
