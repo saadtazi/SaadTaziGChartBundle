@@ -4,3 +4,6 @@ gchart_demo:
 gchart_demo2:
     pattern:  /demo2
     defaults: { _controller: GChartBundle:Demo:demo2 }
+gchart_demo3:
+    pattern:  /demo3
+    defaults: { _controller: GChartBundle:Demo:demo3 }    

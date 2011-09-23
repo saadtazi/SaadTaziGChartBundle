@@ -185,10 +185,32 @@ $dt->addRows($myArray);
         return $this->render(
                     'GChartBundle:Demo:demo2.html.twig', 
                     array(
-                        'dt' => $dt->toStrictArray(false)
+                        'dt' => $dt->toStrictArray()
                     )
                 );
         
+    }
+    
+    
+    public function demo3Action() {
+        //how to deal with 0 values #2
+        $dataTable = new DataTable\DataTable();
+        $dataTable->addColumn('', 'My title', 'string');
+        $dataTable->addColumnObject(new DataTable\DataColumn('total', 'Caption', 'number'));
+
+        $dataTable->addRow(array('Lable', 10));
+        $dataTable->addRow(array('Lable', 0));
+        $dataTable->addRow(array('Lable', 0));
+        $dataTable->addRow(array('Lable', 5));
+        $dataTable->addRow(array('Lable', 0));
+        var_dump($dataTable);
+        return $this->render(
+                    'GChartBundle:Demo:demo3.html.twig', 
+                    array(
+                        'dt' => $dataTable->toArray(),
+                        //'dt2' => $dataTable->toStrictArray()
+                    )
+                );
     }
 
 }

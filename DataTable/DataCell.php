@@ -34,7 +34,6 @@ class DataCell {
         $v = isset($arr['v'])? $arr['v'] : null;
         $f = isset($arr['f'])? $arr['f'] : null;
         $p = isset($arr['p'])? $arr['p'] : null;
-        
         return new DataCell($v, $f, $p);
     }
     
@@ -44,12 +43,10 @@ class DataCell {
      * @return array
      */
     public function toArray() {
-        return array_filter(
-                array(
-                    'v' => $this->v,
-                    'f' => $this->f,
-                    'p' => $this->p
-                )
+        return array(
+            'v' => $this->v,
+            'f' => $this->f,
+            'p' => $this->p
         );
     }
     

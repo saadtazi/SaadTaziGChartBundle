@@ -10,6 +10,10 @@ namespace SaadTazi\GChartBundle\DataTable;
  */
 class DataRow {
     
+    /**
+     *
+     * @var array
+     */
     protected $cells    = null;
 
     /**
