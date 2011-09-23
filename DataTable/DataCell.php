@@ -43,10 +43,12 @@ class DataCell {
      * @return array
      */
     public function toArray() {
-        return array(
-            'v' => $this->v,
-            'f' => $this->f,
-            'p' => $this->p
+        return array_filter(
+                array(
+                    'v' => $this->v,
+                    'f' => $this->f,
+                    'p' => $this->p,
+                ), function ($val) { return !is_null($val);}
         );
     }
     

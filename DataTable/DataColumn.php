@@ -70,7 +70,7 @@ class DataColumn {
                     'id' => $this->id,
                     'label' => $this->label,
                     'type' => $this->type,
-                )
+                ), function ($val) { return !is_null($val);}
         );
     }
     

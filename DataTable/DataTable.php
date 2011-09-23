@@ -175,7 +175,7 @@ class DataTable {
                     'cols' => $cols,
                     'rows' => $rows,
                     'p'    => $p
-                )
+                ), function ($val) { return !is_null($val);}
         );
     }
     /** 
