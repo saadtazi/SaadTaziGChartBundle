@@ -130,7 +130,7 @@ class GChartExtension extends \Twig_Extension {
     }
     
     /**
-     * generic method that generate a Twig template based on its name
+     * generic method that generates a Twig template based on its name
      */
     protected function renderTemplate($templateName, $params) {
         $templ = false;

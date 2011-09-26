@@ -39,13 +39,13 @@ class DataCell {
     
     
     /**
-     *returns an array representation of the cell (usuefull for JSON)
+     *returns an array representation of the cell (useful for JSON)
      * @return array
      */
     public function toArray() {
         return array_filter(
                 array(
-                    'v' => $this->v,
+                    'v' => $this->getValueForArray(),
                     'f' => $this->f,
                     'p' => $this->p,
                 ), function ($val) { return !is_null($val);}
@@ -68,4 +68,14 @@ class DataCell {
         return $this->v;
     }
     
+    public function getValueForArray() {
+        return self::getValueForArraySatic($this->v);
+    }
+    public static function getValueForArraySatic($value) {
+        return (is_object($value) && $value instanceof \DateTime)? '[new Date]('.$value->format('Y,n,j,G,i,s').')[new Date]': $value;
+    }
+    
+    public function getOptions() {
+        return $this->p;
+    }
 }

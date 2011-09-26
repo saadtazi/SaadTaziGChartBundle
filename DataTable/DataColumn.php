@@ -13,7 +13,9 @@ namespace SaadTazi\GChartBundle\DataTable;
  * @link http://code.google.com/apis/chart/interactive/docs/reference.html#DataTable
  */
 class DataColumn {
-    public static $validTypes = array('string', 'number', 'date', 'boolean');
+    // timeofday: an array of four numbers: [hour, minute, second, millisenconds].
+    // date and datetime: a js Date object... 
+    public static $validTypes = array('string', 'number', 'date',  'datetime', 'timeofday', 'boolean');
     
     protected $id    = null;
     protected $label = null;
@@ -27,7 +29,10 @@ class DataColumn {
      */
     public function __construct($id, $label, $type) {
         if (!in_array($type, self::$validTypes)) {
-            throw new Exception('Invalid type for DataColumn');
+            throw new Exception\InvalidColumnTypeException('Invalid type for DataColumn ' . $type);
+        }
+        if (!isset($label) || !isset($type)) {
+            throw new \Exception ('DataColumn constructor excepts a label and an type');
         }
         $this->id = $id;
         $this->label = $label;
@@ -40,10 +45,7 @@ class DataColumn {
      * @return DataColumn
      */
     public static function fromArray(array $colData) {
-        if (!isset($colData['label']) || !isset($colData['type'])) {
-            throw new Exception ('DataCol excepts a label and an type');
-           }
-           return new DataColumn($colData['id'], $colData['label'], $colData['type']);
+       return new DataColumn($colData['id'], $colData['label'], $colData['type']);
     }
     
     /**

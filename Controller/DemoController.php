@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use SaadTazi\GChartBundle\DataTable;
 
+
 use SaadTazi\GChartBundle\Chart\PieChart;
 
 class DemoController extends Controller
@@ -73,7 +74,10 @@ class DemoController extends Controller
         $dataTable2->addRow(array('row 2', 5, 1));
         //mixed
         $dataTable2->addRow(array('row 3', array('v' => 5), 10));
-        $dataTable2->addRow(array('row 4', array('v' => 2), 10));
+        $dataTable2->addRow(array('row 4', array('v' => 2), 0));
+        $dataTable2->addRow(array('row 5', array('v' => 0), 10));
+        $dataTable2->addRow(array('row 5', 10, 0));
+        $dataTable2->addRow(array('row 5', 4, 5));
         
         
         /*
@@ -126,30 +130,47 @@ class DemoController extends Controller
                 ),
                 false
         );
+        $dataTable7 = DataTable\DataTable::fromSimpleMatrix(
+                array(
+                    array('col1', 'col2', 'col3'),
+                    array('row1', 1, true),
+                    array('row2', 3, false),
+                    array('row3', 4, true),
+                ),
+                true
+        );
         
         
         
         $myArray[0]['idMonth'] = 'January';
-$myArray[0]['idOne'] = 1;
-$myArray[0]['idTwo'] = 2;
-$myArray[1]['idMonth'] = 'February';
-$myArray[1]['idThree'] = 33;
-$myArray[2]['idMonth'] = 'March';
-$myArray[2]['idTwo'] = 2;
-$myArray[2]['idOne'] = 1;
-$myArray[2]['idThree'] = 33;
-//------------
-$dt = new DataTable\DataTable();
-$dt->addColumn('idMonth', 'Months', 'string');
-$dt->addColumn('idOne', 'One', 'number');
-$dt->addColumn('idTwo', 'Two', 'number');
-$dt->addColumn('idThree', 'Three', 'number');
-//------------
-$dt->addRows($myArray);
+        $myArray[0]['idOne'] = 1;
+        $myArray[0]['idTwo'] = 2;
+        $myArray[1]['idMonth'] = 'February';
+        $myArray[1]['idThree'] = 33;
+        $myArray[2]['idMonth'] = 'March';
+        $myArray[2]['idTwo'] = 2;
+        $myArray[2]['idOne'] = 1;
+        $myArray[2]['idThree'] = 33;
+        //------------
+        $dt = new DataTable\DataTable();
+        $dt->addColumn('idMonth', 'Months', 'string');
+        $dt->addColumn('idOne', 'One', 'number');
+        $dt->addColumn('idTwo', 'Two', 'number');
+        $dt->addColumn('idThree', 'Three', 'number');
+        //------------
+        $dt->addRows($myArray);
+        
+        $dataTable8 = new DataTable\DataTable();
+        $dataTable8->addColumnObject(new DataTable\DataColumn('id1', 'year', 'date'));
+        $dataTable8->addColumnObject(new DataTable\DataColumn('id2', 'movies', 'number'));
+        
+        $dataTable8->addRow(array(new \DateTime('2009-01-01'), 12));
+        $dataTable8->addRow(array(new \DateTime('2009-02-01'), 9));
+        $dataTable8->addRow(array(new \DateTime('2009-03-01'), 16));
         
         
         return $this->render(
-                    'GChartBundle:Demo:demo.html.twig', 
+                    'SaadTaziGChartBundle:Demo:demo.html.twig', 
                     array(
                         'dt' => $dt->toStrictArray(),
                         'dataTable1' => $dataTable1->toArray(),
@@ -158,7 +179,9 @@ $dt->addRows($myArray);
                         'dataTable3' => $dataTable3->toArray(),
                         'dataTable4' => $dataTable4->toArray(),
                         'dataTable5' => $dataTable5->toArray(),
-                        'dataTable6' => $dataTable6->toArray()
+                        'dataTable6' => $dataTable6->toArray(),
+                        'dataTable7' => $dataTable7->toArray(),
+                        'dataTable8' => $dataTable8->toArray()
                     )
                 );
         
@@ -183,7 +206,7 @@ $dt->addRows($myArray);
         //------------
         $dt->addRows($myArray);
         return $this->render(
-                    'GChartBundle:Demo:demo2.html.twig', 
+                    'SaadTaziGChartBundle:Demo:demo2.html.twig', 
                     array(
                         'dt' => $dt->toStrictArray()
                     )
@@ -205,7 +228,7 @@ $dt->addRows($myArray);
         $dataTable->addRow(array('Lable', 0));
         var_dump($dataTable);
         return $this->render(
-                    'GChartBundle:Demo:demo3.html.twig', 
+                    'SaadTaziGChartBundle:Demo:demo3.html.twig', 
                     array(
                         'dt' => $dataTable->toArray(),
                         //'dt2' => $dataTable->toStrictArray()

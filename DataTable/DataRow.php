@@ -18,15 +18,21 @@ class DataRow {
 
     /**
      * Constructor
+     * takes an array of value, 
+     *   an array of DataCell,
+     *   or an array of "cell array" (DataCell::fromArray)
+     * 
      * @param array $cells 
      */
     public function __construct(array $cells) {
-        //var_dump($cells);die();
         foreach($cells as $key => $cell) {
             //if it's an array, then v, f, p
             if (is_array($cell)) {
                 $this->cells[$key] = DataCell::fromArray($cell);
+            } elseif ($cell instanceof DataCell) {
+                $this->cells[$key] = $cell;
             } else {
+                // just the value of the cell I guess...
                 $this->cells[$key] = new DataCell($cell);
             }
         }
@@ -54,16 +60,15 @@ class DataRow {
     }
     
     /**
-     * returns an array representation of the instance
+     * returns an array representation of the instance,
+     * by matching column ids with Row cell key
      * @return array 
      */
     public function toMatchingArray($colsArr) {
         $arr = array();
         //var_dump($colsArr);die();
         foreach ($colsArr as $key => $col) {
-            
             $arr[] = $this->getCellArrayForPosition($col->getId());
-            
         }
         return $arr;
     }

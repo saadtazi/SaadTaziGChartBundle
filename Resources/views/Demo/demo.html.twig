@@ -1,4 +1,4 @@
-{% extends "GChartBundle::layout.html.twig" %}
+{% extends "SaadTaziGChartBundle::layout.html.twig" %}
 
 {% block content %}
 
@@ -9,36 +9,55 @@
 
 <hr/>
 <h2>Visualization Chart Demo</h2>
+dataTable1: {{ dataTable1 | json_encode }}
 {{ gchart_pie_chart(dataTable1, 'chart1', 400, 200, 'coucou') }}
 <hr/>
+dataTable2: {{ dataTable2 | json_encode }}
 {{ gchart_column_chart(dataTable2, 'chart2', 400, 200, 'coucou') }}
 
 <hr/>
+dataTable8: {{ dataTable8 | json_encode }}
+{{ gchart_column_chart(dataTable8, 'chart22', 400, 200, 'coucou chart 8') }}
+<hr/>
+dataTable2
 {{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou') }}
 <hr/>
+dataTable2
 {{ gchart_bar_chart(dataTable2, 'chart4', 400, 200, 'coucou') }}
 <hr/>
+dataTable5: {{ dataTable5 | json_encode }}
 {{ gchart_bar_chart(dataTable5, 'chartfromMatrix5', 400, 200, 'from table5') }}
 <hr/>
+dataTable6: {{ dataTable6 | json_encode }}
 {{ gchart_bar_chart(dataTable6, 'chartfromMatrix6', 400, 200, 'from table6') }}
 
 <hr/>
+dataTable2
 {{ gchart_area_chart(dataTable2, 'chart5', 400, 200, 'coucou') }}
 <hr/>
+dataTable4: {{ dataTable4 | json_encode }}
 {{ gchart_scatter_chart(dataTable4, 'chart6', 400, 200, 'coucou', 'x label', 'y label') }}
 <hr/>
+dataTable2
 {{ gchart_combo_chart(dataTable2, 'chart7', 400, 200, 'line', 'combo', {'series': {1: {'type': 'bars'} } }) }}
 
 <hr/>
+dataTable1
 {{ gchart_gauge(dataTable1, 'gauge1', 400, 200, 'coucou') }}
 <hr/>
+dataTable2
 {{ gchart_table(dataTable2, 'table1') }}
 <hr/>
-
+dataTable7: {{ dataTable7 | json_encode }}
+{{ gchart_table(dataTable7, 'chartfromMatrix7', 400, 200, 'from table7') }}
+<hr/>
+dt: {{dt | json_encode }}
 {{ gchart_table(dt, 'myTable1') }}
 <hr/>
 <h2>Simple Chart Demo</h2>
+rawDataTable1: {{ rawDataTable1 | json_encode }}
 <img src="{{ gchart_get_pie_chart_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
 <hr/>
+rawDataTable1
 <img src="{{ gchart_get_pie_chart3d_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
 {% endblock %}

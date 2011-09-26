@@ -1,6 +1,6 @@
 What is it?
 ===========
-This is a super simple Bundle that faciliatate the [Google Chart Image API](http://code.google.com/apis/chart/image/) and the [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html).
+This is a super simple Bundle that facilitate the usage of [Google Chart Image API](http://code.google.com/apis/chart/image/) and the [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html).
 
 It allows to render:
 
@@ -26,26 +26,47 @@ http://blog.fruitsoftware.com/a-propos/demo-gchartbundle/
 How to install it?
 ------------------
 
-The easiest way is to install it is to git clone or git add module:
+  1. Add this bundle to your ``vendor/`` dir:
+      * Using the vendors script.
 
-<pre>git submodule add git://github.com/saadtazi/GChartBundle.git src/Bundle/SaadTazi/GChartBundle</pre>
+        Add the following lines in your ``deps`` file::
 
-Then add it to your app/autoload.php and app/AppKernel.php
+            [SaadTaziOEmbedBundle]
+                git=git://github.com/SaadTazi/SaadTaziGChartBundle.git
+                target=/bundles/SaadTazi/Bundle/GChartBundle
+
+        Run the vendors script:
+
+            ./bin/vendors install
+
+      * Using git submodules.
+
+            $ git submodule add git://github.com/SaadTazi/SaadTaziGChartBundle.git vendor/bundles/SaadTazi/Bundle/GChartBundle
+
+  2. Add the SaadTazi namespace to your autoloader:
 
 ``` php
-<?php
-    //in app/Autoload.php
-    $loader->registerNamespaces(array(     ...
-        'SaadTazi'         => __DIR__.'/../src',
-        ..
-    ));
-  
-    //in app/AppKernel.php
-          $bundles = array(
-              ...
-              new SaadTazi\GChartBundle\GChartBundle(),
-              ...
-          );
+
+          // app/autoload.php
+          $loader->registerNamespaces(array(
+                'SaadTazi' => __DIR__.'/../vendor/bundles',
+                // your other namespaces
+          ));
+```
+
+  3. Add this bundle to your application's kernel:
+
+``` php
+
+          // app/ApplicationKernel.php
+          public function registerBundles()
+          {
+              return array(
+                  // ...
+                  new SaadTazi\Bundle\OEmbedBundle\SaadTaziOEmbedBundle(),
+                  // ...
+              );
+          }
 ```
 
 Optional: If you want to see the demo page, add the following to your routing.yml (requires Twig):
@@ -79,11 +100,9 @@ and Resources\views\Demo\demo.html.twig
 Notes
 -----
 I implemented almost all the corechart chart types from the Google Chart Tool.
-But I only implemented 3 Google Chart Image types, because (<strike>they are ugly and</strike>) almost all of them can be built using the Google Chart Tool.
+But I only implemented 3 Google Chart Image types, because 
+(<strike>they are ugly and</strike>) almost all of them can be built using 
+the Google Chart Tool.
 
 You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
 But you will probably find it a little bit boring.
-
-TODO
-----
-Add (a lot of) unit tests. 

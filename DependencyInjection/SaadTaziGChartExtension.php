@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
 
-class GChartExtension extends Extension
+class SaadTaziGChartExtension extends Extension
 {
 
     public function load(array $configs, ContainerBuilder $container)

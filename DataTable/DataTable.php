@@ -65,6 +65,10 @@ class DataTable {
         $this->cols[] = $col; 
     }
     
+    public function getColumns() {
+        return $this->cols;
+    }
+    
     /**
      * Adds a column at the end of the DataTable
      * @param string $id
@@ -192,18 +196,16 @@ class DataTable {
     }
     
     /**
-     * Returns a DataTable from a simple matrix (array of array, with first row = label if has label = true)
+     * Returns a DataTable from a simple matrix (array of array, with first row = label if hasHeader = true)
      * @param array $array
      * @param boolean $hasHeader if true, indicates that the first row contains the labels
      * @return DataTable 
      */
     public static function fromSimpleMatrix(array $array, $hasHeader = true) {
-        $firstDataRowPos = 0;
         $dataTable = new DataTable();
         
         $labelArray = array();
         if ($hasHeader) {
-            $firstDataRowPos = 1;
             $labelArray = $array[0];
             array_shift($array);
             
@@ -212,12 +214,15 @@ class DataTable {
         $firstDataRow = $array[0];
         foreach ($firstDataRow as $key => $value) {
             $type = "string";
-            $label = isset($labelArray[$key])? $labelArray[$key]: '';
-            if (is_numeric($value)) {
+            $label = isset($labelArray[$key])? $labelArray[$key]: 'c'.$key;
+            if (is_object($value) && $value instanceof \DateTime) {
+                $type = 'datetime';
+            } elseif (is_bool($value)) {
+                $type = 'boolean';
+            } elseif (is_numeric($value)) {
                 $type = 'number';
-                
             }
-            $dataTable->addColumn($key, $label, $type);
+            $dataTable->addColumn('id'.$key, $label, $type);
         }
         //now the data...
         foreach ($array as $key => $row) {

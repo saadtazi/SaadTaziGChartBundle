@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(function() {
-    var data = new google.visualization.DataTable({{ data | json_encode | raw }});
+    var data = new google.visualization.DataTable({{ data | json_encode | replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | raw }});
   
     // Create and draw the visualization.
     var chart = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));

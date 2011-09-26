@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="twig.extension.g_chart.class">SaadTazi\GChartBundle\Twig\GChartExtension</parameter>
-        <parameter key="twig.extension.visualization.template">GChartBundle:chart:visualizationChart.html.twig</parameter>
+        <parameter key="twig.extension.visualization.template">SaadTaziGChartBundle:chart:visualizationChart.html.twig</parameter>
     </parameters>
 
     <services>
