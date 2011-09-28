@@ -31,7 +31,7 @@ How to install it?
 
         Add the following lines in your ``deps`` file::
 
-            [SaadTaziOEmbedBundle]
+            [SaadTaziGChartBundle]
                 git=git://github.com/SaadTazi/SaadTaziGChartBundle.git
                 target=/bundles/SaadTazi/Bundle/GChartBundle
 
@@ -63,7 +63,7 @@ How to install it?
           {
               return array(
                   // ...
-                  new SaadTazi\Bundle\OEmbedBundle\SaadTaziOEmbedBundle(),
+                  new SaadTazi\Bundle\GChartBundle\SaadTaziGChartBundle(),
                   // ...
               );
           }
@@ -73,7 +73,7 @@ Optional: If you want to see the demo page, add the following to your routing.ym
 
 ``` yaml
     _demo:
-        resource: "@GChartBundle/Resources/config/routing.yml"
+        resource: "@SaadTaziGChartBundle/Resources/config/routing.yml"
         type:     yaml
         prefix:   /gchart
 ```
@@ -84,10 +84,11 @@ Don't forget to include the required javascript in your layout, for example:
 
 ```
         <script type="text/javascript">
-            //adds the package you need
+            // adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
-            //jquery mini-dependency. If you have it already included, just remove that line...
-            google.load('jquery', '1.6.0');
+            // jquery mini-dependency ($() selector). If you have it already 
+            // included, just remove that line...
+            google.load('jquery', '1.6.0'); //use the latest version
         </script> 
 ```
 
@@ -105,4 +106,4 @@ But I only implemented 3 Google Chart Image types, because
 the Google Chart Tool.
 
 You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
-But you will probably find it a little bit boring.
+But you will probably find it a little bit "painful".

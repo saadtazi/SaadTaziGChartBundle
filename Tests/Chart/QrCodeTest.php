@@ -7,10 +7,13 @@ use SaadTazi\GChartBundle\Chart\QrCode;
 
 class QrCodeTest extends TestCase
 {
-    protected $testStrings = array(
-        '1- test string',
-        '2- with accentued chàräçtèr'
-    );
+    protected function setUp() {
+        $this->testStrings = array(
+            '1- test string',
+            '2- with accentued chàräçtèr'
+        );
+    }
+    
     public function testQrCodeUrlWithDefaultOptions()
     {
         $api = new QrCode();
