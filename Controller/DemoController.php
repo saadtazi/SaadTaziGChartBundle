@@ -168,6 +168,54 @@ class DemoController extends Controller
         $dataTable8->addRow(array(new \DateTime('2009-02-01'), 9));
         $dataTable8->addRow(array(new \DateTime('2009-03-01'), 16));
         
+        // for candlestick: requires 5 cols: one string and 4 numbers
+        $dt9 = new DataTable\DataTable();
+        $dt9->addColumn('what', 'What', 'string');
+        $dt9->addColumn('idOne', 'One', 'number');
+        $dt9->addColumn('idTwo', 'Two', 'number');
+        $dt9->addColumn('idThree', 'Three', 'number');
+        $dt9->addColumn('idFour', 'Four', 'number');
+        
+        $dt9->addRow(array('candle 1', 1, 2, 3, 4));
+        $dt9->addRow(array('candle 2', 1, 2.5, 3.5, 3.75));
+        $dt9->addRow(array('candle 3', 2, 2.5, 3.5, 3.75));
+        
+        // for treemap: requires 4 cols
+        $dt10 = new DataTable\DataTable();
+        $dt10->addColumn('region', 'Region', 'string');
+        $dt10->addColumn('parent', 'Parent', 'string');
+        $dt10->addColumn('nb1', 'Number 1 (size)', 'number');
+        $dt10->addColumn('nb2', 'Number 2 (color - optional)', 'number');
+        
+        $dt10->addRow(array("Global",null,0,0));
+        $dt10->addRow(array("America","Global",0,0));
+        $dt10->addRow(array("Europe","Global",0,0));
+        $dt10->addRow(array("Asia","Global",0,0));
+        $dt10->addRow(array("Australia","Global",0,0));
+        $dt10->addRow(array("Africa","Global",0,0));
+        $dt10->addRow(array("Brazil","America",11,10));
+        $dt10->addRow(array("USA","America",52,31));
+        $dt10->addRow(array("Mexico","America",24,12));
+        $dt10->addRow(array("Canada","America",16,-23));
+        $dt10->addRow(array("France","Europe",42,-11));
+        $dt10->addRow(array("Germany","Europe",31,-2));
+        $dt10->addRow(array("Sweden","Europe",22,-13));
+        $dt10->addRow(array("Italy","Europe",17,4));
+        $dt10->addRow(array("UK","Europe",21,-5));
+        $dt10->addRow(array("China","Asia",36,4));
+        $dt10->addRow(array("Japan","Asia",20,-12));
+        $dt10->addRow(array("India","Asia",40,63));
+        $dt10->addRow(array("Laos","Asia",4,34));
+        $dt10->addRow(array("Mongolia","Asia",1,-5));
+        $dt10->addRow(array("Israel","Asia",12,24));
+        $dt10->addRow(array("Iran","Asia",18,13));
+        $dt10->addRow(array("Pakistan","Asia",11,-52));
+        $dt10->addRow(array("Egypt","Africa",21,0));
+        $dt10->addRow(array("S. Africa","Africa",30,43));
+        $dt10->addRow(array("Sudan","Africa",12,2));
+        $dt10->addRow(array("Congo","Africa",10,12));
+        $dt10->addRow(array("Zair","Africa",10,12));
+        
         
         return $this->render(
                     'SaadTaziGChartBundle:Demo:demo.html.twig', 
@@ -181,7 +229,9 @@ class DemoController extends Controller
                         'dataTable5' => $dataTable5->toArray(),
                         'dataTable6' => $dataTable6->toArray(),
                         'dataTable7' => $dataTable7->toArray(),
-                        'dataTable8' => $dataTable8->toArray()
+                        'dataTable8' => $dataTable8->toArray(),
+                        'dt9'        => $dt9->toArray(),
+                        'dt10'        => $dt10->toArray()
                     )
                 );
         

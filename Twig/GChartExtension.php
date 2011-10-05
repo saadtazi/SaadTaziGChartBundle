@@ -28,17 +28,22 @@ class GChartExtension extends \Twig_Extension {
     public function getFunctions() {
         return array(
             'gchart_get_qrcode_url' => new \Twig_Function_Method($this, 'getQrCodeUrl'),
-            'gchart_pie_chart' => new \Twig_Function_Method($this, 'gchartPieChart', array('is_safe' => array('html'))),
-            'gchart_column_chart' => new \Twig_Function_Method($this, 'gchartColumnChart', array('is_safe' => array('html'))),
-            'gchart_line_chart' => new \Twig_Function_Method($this, 'gchartLineChart', array('is_safe' => array('html'))),
-            'gchart_bar_chart' => new \Twig_Function_Method($this, 'gchartBarChart', array('is_safe' => array('html'))),
-            'gchart_area_chart' => new \Twig_Function_Method($this, 'gchartAreaChart', array('is_safe' => array('html'))),
-            'gchart_scatter_chart' => new \Twig_Function_Method($this, 'gchartScatterChart', array('is_safe' => array('html'))),
-            'gchart_combo_chart' => new \Twig_Function_Method($this, 'gchartComboChart', array('is_safe' => array('html'))),
-            'gchart_gauge' => new \Twig_Function_Method($this, 'gchartGauge', array('is_safe' => array('html'))),
-            'gchart_table' => new \Twig_Function_Method($this, 'gchartTable', array('is_safe' => array('html'))),
+            'gchart_pie_chart'      => new \Twig_Function_Method($this, 'gchartPieChart', array('is_safe' => array('html'))),
+            'gchart_candlestick_chart' => new \Twig_Function_Method($this, 'gchartCandleStickChart', array('is_safe' => array('html'))),
+            'gchart_column_chart'   => new \Twig_Function_Method($this, 'gchartColumnChart', array('is_safe' => array('html'))),
+            'gchart_line_chart'     => new \Twig_Function_Method($this, 'gchartLineChart', array('is_safe' => array('html'))),
+            'gchart_bar_chart'      => new \Twig_Function_Method($this, 'gchartBarChart', array('is_safe' => array('html'))),
+            'gchart_area_chart'     => new \Twig_Function_Method($this, 'gchartAreaChart', array('is_safe' => array('html'))),
+            'gchart_treemap'     => new \Twig_Function_Method($this, 'gchartTreeMap', array('is_safe' => array('html'))),
+            'gchart_scatter_chart'  => new \Twig_Function_Method($this, 'gchartScatterChart', array('is_safe' => array('html'))),
+            'gchart_combo_chart'    => new \Twig_Function_Method($this, 'gchartComboChart', array('is_safe' => array('html'))),
+            'gchart_gauge'          => new \Twig_Function_Method($this, 'gchartGauge', array('is_safe' => array('html'))),
+            'gchart_table'          => new \Twig_Function_Method($this, 'gchartTable', array('is_safe' => array('html'))),
             'gchart_get_pie_chart_url' => new \Twig_Function_Method($this, 'getPieChartUrl', array('is_safe' => array('html'))),
             'gchart_get_pie_chart3d_url' => new \Twig_Function_Method($this, 'getPieChart3DUrl', array('is_safe' => array('html'))),
+            'gchart_get_icon_url'   => new \Twig_Function_Method($this, 'getIconUrl', array('is_safe' => array('html'))),
+            'gchart_get_letter_pin_url'   => new \Twig_Function_Method($this, 'getLetterPinUrl', array('is_safe' => array('html'))),
+            'gchart_get_icon_pin_url'   => new \Twig_Function_Method($this, 'getIconPinUrl', array('is_safe' => array('html'))),
             
         );
     }
@@ -55,6 +60,14 @@ class GChartExtension extends \Twig_Extension {
     public function gchartColumnChart($data, $id, $width, $height, $title = null, $config = array()) {
         return $this->renderGChart($data, $id, 'ColumnChart', $width, $height, $title, $config);
     }
+    
+    /**
+     * gchart_candlestick_chart definition - needs 5 cols
+     * @see http://code.google.com/apis/chart/interactive/docs/gallery/candlestickchart.html#Data_Format
+     */
+    public function gchartCandleStickChart($data, $id, $width, $height, $title = null, $config = array()) {
+        return $this->renderGChart($data, $id, 'CandlestickChart', $width, $height, $title, $config);
+    }
     /**
      * gchart_line_chart definition
      */
@@ -69,10 +82,18 @@ class GChartExtension extends \Twig_Extension {
     }
     
     /**
-     * gchart_area_chart defniition
+     * gchart_area_chart definition
      */
     public function gchartAreaChart($data, $id, $width, $height, $title = null, $config = array()) {
         return $this->renderGChart($data, $id, 'AreaChart', $width, $height, $title, $config);
+    }
+    
+    /**
+     * gchart_treemap definition - needs 4 cols
+     * @see http://code.google.com/apis/chart/interactive/docs/gallery/treemap.html#Data_Format
+     */
+    public function gchartTreeMap($data, $id, $width, $height, $title = '', $config = array()) {
+        return $this->renderGChart($data, $id, 'TreeMap', $width, $height, $title, $config, true);
     }
     
     /**
@@ -122,23 +143,31 @@ class GChartExtension extends \Twig_Extension {
     /**
      * Generic method that returns html of gchart charts
      */
-    protected function renderGChart($data, $id, $type, $width, $height, $title = null, $config = array()) {
+    protected function renderGChart($data, $id, $type, $width, $height, $title = null, $config = array(), $addDivWithAndHeight = false) {
         $config['width'] = $width;
         $config['height'] = $height;
-        if (!isset($config['title'])) { $config['title'] = $title;}
-        return $this->renderTemplate('gChartTemplate', array('chartType' => $type, 'data' => $data, 'id' => $id, 'config' => $config ));
+        if (!isset($config['title']) && !is_null($title) && trim($title) != '') { $config['title'] = $title;}
+        return $this->renderTemplate('gChartTemplate', array('chartType' => $type, 'data' => $data, 'id' => $id, 'config' => $config ), $addDivWithAndHeight);
     }
     
     /**
      * generic method that generates a Twig template based on its name
      */
-    protected function renderTemplate($templateName, $params) {
+    protected function renderTemplate($templateName, $params, $addDivWithAndHeight = false) {
         $templ = false;
         if (isset($this->resources[$templateName])) {
             $templ = $this->environment->loadTemplate($this->resources[$templateName]);
         } else {
             throw new \Exception('mmm, template not found');
         }
+        if ($addDivWithAndHeight && isset($params['config']) && isset($params['config']['width']) && isset($params['config']['height'])) {
+            $params['addDivWithAndHeight'] = true;
+            $params['width'] = $params['config']['width'];
+            $params['height'] = $params['config']['height'];
+        } else {
+            $params['addDivWithAndHeight'] = false;
+        }
+        
         return $templ->render($params); 
     }
     
@@ -158,6 +187,21 @@ class GChartExtension extends \Twig_Extension {
     public function getPieChart3DUrl($data, $id, $width, $height, $title = null, $params = array()) {
         $chart = new Chart\PieChart3D();
         return $chart->getUrl($data, $width, $height, $title, $params);
+    }
+    
+    public function getIconUrl($type, $data) {
+        $chart = new Chart\DynamicIcon();
+        return $chart->getUrl($type, $data);
+    }
+    public function getLetterPinUrl($text, $fill_color, $text_color = '000000', $with_shadow = false, $pin_style = 'pin') {
+        $type = $with_shadow? 'd_map_xpin_letter_withshadow': 'd_map_pin_xletter';
+        $data = array($pin_style, $text, $fill_color, $text_color);
+        return $this->getIconUrl($type, $data);
+    }
+    public function getIconPinUrl($icon_srting, $fill_color, $with_shadow = false, $pin_style = 'pin') {
+        $type = $with_shadow? 'd_map_xpin_icon_withshadow': 'd_map_xpin_icon';
+        $data = array($pin_style, $icon_srting, $fill_color);
+        return $this->getIconUrl($type, $data);
     }
     
     /**

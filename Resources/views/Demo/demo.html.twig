@@ -2,6 +2,68 @@
 
 {% block content %}
 
+<!--script>
+google.setOnLoadCallback(drawChart);
+      function drawChart() {
+          // Create and populate the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Region');
+          data.addColumn('string', 'Parent');
+          data.addColumn('number', 'Market trade volume (size)');
+          data.addColumn('number', 'Market increase/decrease (color)');
+          data.addRows([
+            ["Global",null,0,0],
+            ["America","Global",0,0],
+            ["Europe","Global",0,0],
+            ["Asia","Global",0,0],
+            ["Australia","Global",0,0],
+            ["Africa","Global",0,0],
+            ["Brazil","America",11,10],
+            ["USA","America",52,31],
+            ["Mexico","America",24,12],
+            ["Canada","America",16,-23],
+            ["France","Europe",42,-11],
+            ["Germany","Europe",31,-2],
+            ["Sweden","Europe",22,-13],
+            ["Italy","Europe",17,4],
+            ["UK","Europe",21,-5],
+            ["China","Asia",36,4],
+            ["Japan","Asia",20,-12],
+            ["India","Asia",40,63],
+            ["Laos","Asia",4,34],
+            ["Mongolia","Asia",1,-5],
+            ["Israel","Asia",12,24],
+            ["Iran","Asia",18,13],
+            ["Pakistan","Asia",11,-52],
+            ["Egypt","Africa",21,0],
+            ["S. Africa","Africa",30,43],
+            ["Sudan","Africa",12,2],
+            ["Congo","Africa",10,12],
+            ["Zair","Africa",8,10]
+          ]);
+
+          // Create and draw the visualization.
+          var tree = new google.visualization.TreeMap(document.getElementById('mapTreeStatic'));
+          tree.draw(data, {
+            minColor: '#f00',
+            midColor: '#ddd',
+            maxColor: '#0d0',
+            headerHeight: 15,
+            fontColor: 'black',
+            showScale: true});
+      }
+    </script>
+    <div id="mapTreeStatic" style="width: 1100px; height: 500px;"></div-->
+    <hr/>
+dt10: {{dt10 | json_encode }}
+{{ gchart_treemap(dt10, 'myTableTreeMap', 1100, 500, '', {
+            'minColor': '#f00',
+            'midColor': '#ddd',
+            'maxColor': '#0d0',
+            'headerHeight': 15,
+            'fontColor': 'black',
+            'showScale': true}) }}
+<hr/>
 <h2>QR Code Demo</h2>
 <img src="{{ gchart_get_qrcode_url('hello Montréal') }}"/>
 <hr/>
@@ -54,10 +116,22 @@ dataTable7: {{ dataTable7 | json_encode }}
 dt: {{dt | json_encode }}
 {{ gchart_table(dt, 'myTable1') }}
 <hr/>
+dt9: {{dt9 | json_encode }}
+{{ gchart_candlestick_chart(dt9, 'myTableCandleStick', 400, 200) }}
+<hr/>
+
 <h2>Simple Chart Demo</h2>
 rawDataTable1: {{ rawDataTable1 | json_encode }}
 <img src="{{ gchart_get_pie_chart_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
 <hr/>
 rawDataTable1
 <img src="{{ gchart_get_pie_chart3d_url(rawDataTable1, 'chart3', 400, 200, 'simple chart') }}"/>
+<hr/>
+chst=d_bubble_icon_text_small&chld=ski|bb|Wheeee!|FFFFFF|000000
+generic gchart_get_icon_url: <img src="{{ gchart_get_icon_url('d_bubble_icon_text_small', 'ski|bb|Wheeee!|FFFFFF|000000') }}"/>
+<img src="{{ gchart_get_icon_url('d_bubble_icon_text_small', ['ski', 'bb', 'Wheeee with array!','FFFFFF','000000']) }}"/>
+<hr/>
+gchart_get_letter_pin_url: <img src="{{ gchart_get_letter_pin_url('ip', 'ffee44', 'cccccc', true) }}"/><br/>
+gchart_get_icon_pin_url: <img src="{{ gchart_get_icon_pin_url('star', 'ffee44') }}"/>
+gchart_get_icon_pin_url: <img src="{{ gchart_get_icon_pin_url('star', 'ffee44', false, 'pin_star') }}"/>
 {% endblock %}

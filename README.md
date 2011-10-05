@@ -1,6 +1,6 @@
 What is it?
 ===========
-This is a super simple Bundle that facilitate the usage of [Google Chart Image API](http://code.google.com/apis/chart/image/) and the [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html).
+This is a super simple Bundle that facilitate the usage of [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html), [Google Chart Image API](http://code.google.com/apis/chart/image/) and [Google Infographics](http://code.google.com/apis/chart/infographics/).
 
 It allows to render:
 
@@ -13,6 +13,9 @@ It allows to render:
   * Combo Chart
   * Table
   * Gauge
+  * Candlestick Chart
+  * Map tree
+  * Dynamic Icons
 
 Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/image/terms.html) and [Chart tool terms](http://code.google.com/apis/chart/interactive/terms.html) before using that bundle. 
 
@@ -29,7 +32,7 @@ How to install it?
   1. Add this bundle to your ``vendor/`` dir:
       * Using the vendors script.
 
-        Add the following lines in your ``deps`` file::
+        Add the following lines in your ``deps`` file:
 
             [SaadTaziGChartBundle]
                 git=git://github.com/SaadTazi/SaadTaziGChartBundle.git
@@ -86,8 +89,8 @@ Don't forget to include the required javascript in your layout, for example:
         <script type="text/javascript">
             // adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
-            // jquery mini-dependency ($() selector). If you have it already 
-            // included, just remove that line...
+            // jquery mini-dependency ($() selector).
+            // If you have Jquery is already included, just remove that line...
             google.load('jquery', '1.6.0'); //use the latest version
         </script> 
 ```
@@ -104,6 +107,9 @@ I implemented almost all the corechart chart types from the Google Chart Tool.
 But I only implemented 3 Google Chart Image types, because 
 (<strike>they are ugly and</strike>) almost all of them can be built using 
 the Google Chart Tool.
+From the Visualization, I only implemented the marker. 
 
-You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
+Ohh, please feel free to fork, add to it and send me pull requests!
+
+Note: You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
 But you will probably find it a little bit "painful".

@@ -43,13 +43,18 @@ class DataCell {
      * @return array
      */
     public function toArray() {
-        return array_filter(
+        $arr = array_filter(
                 array(
                     'v' => $this->getValueForArray(),
                     'f' => $this->f,
                     'p' => $this->p,
                 ), function ($val) { return !is_null($val);}
         );
+        // mm, some charts don't work if 'v' is not present
+        if (!isset($arr['v'])) {
+            $arr['v'] = null;
+        }
+        return $arr;
     }
     
     /**

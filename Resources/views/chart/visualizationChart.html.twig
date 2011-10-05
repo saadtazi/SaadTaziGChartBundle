@@ -7,4 +7,4 @@ $(function() {
     chart.draw(data, {{ config | json_encode | raw }});
 });
 </script>
-<div id="{{ id }}">&nbsp;</div>
+<div id="{{ id }}"{%if addDivWithAndHeight %} style="width: {{ width }}px;height:{{ height }}px;"{% endif %}>&nbsp;</div>
