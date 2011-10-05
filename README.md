@@ -35,8 +35,8 @@ How to install it?
         Add the following lines in your ``deps`` file:
 
             [SaadTaziGChartBundle]
-                git=git://github.com/SaadTazi/SaadTaziGChartBundle.git
-                target=/bundles/SaadTazi/Bundle/GChartBundle
+                git=git://github.com/saadtazi/SaadTaziGChartBundle.git
+                target=/bundles/SaadTazi/GChartBundle
 
         Run the vendors script:
 
@@ -44,7 +44,7 @@ How to install it?
 
       * Using git submodules.
 
-            $ git submodule add git://github.com/SaadTazi/SaadTaziGChartBundle.git vendor/bundles/SaadTazi/Bundle/GChartBundle
+            $ git submodule add git://github.com/saadtazi/SaadTaziGChartBundle.git vendor/bundles/SaadTazi/GChartBundle
 
   2. Add the SaadTazi namespace to your autoloader:
 
@@ -66,7 +66,7 @@ How to install it?
           {
               return array(
                   // ...
-                  new SaadTazi\Bundle\GChartBundle\SaadTaziGChartBundle(),
+                  new SaadTazi\GChartBundle\SaadTaziGChartBundle(),
                   // ...
               );
           }
