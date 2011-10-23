@@ -89,9 +89,6 @@ Don't forget to include the required javascript in your layout, for example:
         <script type="text/javascript">
             // adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
-            // jquery mini-dependency ($() selector).
-            // If you have Jquery is already included, just remove that line...
-            google.load('jquery', '1.6.0'); //use the latest version
         </script> 
 ```
 
@@ -113,3 +110,22 @@ Ohh, please feel free to fork, add to it and send me pull requests!
 
 Note: You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
 But you will probably find it a little bit "painful".
+
+Mods
+----
+
+2011-10-23 
+
+* removed jQuery dependency (and div output - needs to be done "manually" now... Provides more control)
+
+2011-09-22 
+
+* zero value bug fix
+
+2011-09-06
+
+* Added DataTable::toStrictArray() that checks array keys (ticket #1)
+
+2011-06-23
+
+* Initial commit

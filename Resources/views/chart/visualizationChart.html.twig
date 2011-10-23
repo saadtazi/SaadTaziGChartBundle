@@ -1,10 +1,7 @@
-<script type="text/javascript">
-$(function() {
-    var data = new google.visualization.DataTable({{ data | json_encode | replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | raw }});
-  
-    // Create and draw the visualization.
-    var chart = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
-    chart.draw(data, {{ config | json_encode | raw }});
-});
-</script>
-<div id="{{ id }}"{%if addDivWithAndHeight %} style="width: {{ width }}px;height:{{ height }}px;"{% endif %}>&nbsp;</div>
+var data{{ id }} = new google.visualization.DataTable({{ data | json_encode | replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | raw }});
+
+// Create and draw the visualization.
+var chart{{ id }} = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
+chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | raw }});
+
+

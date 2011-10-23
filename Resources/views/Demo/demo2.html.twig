@@ -2,5 +2,11 @@
 
 {% block content %}
 
-{{ gchart_table(dt, 'myTable1') }}
+<div id="myTable1">&nbsp;</div>
+<script>
+$(function() {
+    {{ gchart_table(dt, 'myTable1') }}
+});
+</script>
+        
 {% endblock %}
