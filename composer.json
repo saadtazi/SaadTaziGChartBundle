@@ -1,0 +1,18 @@
+{
+    "name": "saad-tazi/g-chart-bundle",
+    "description": "A super simple Bundle that facilitate the usage of Google Chart Tool, Google Chart Image API and Google Infographics.",
+    "keywords": ["google", "chart"],
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Saad Tazi"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-0": { "SaadTazi\\GChartBundle": "" }
+    },
+    "target-dir": "SaadTazi/GChartBundle"
+}
