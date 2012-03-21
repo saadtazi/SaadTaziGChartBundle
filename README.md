@@ -29,6 +29,10 @@ http://blog.fruitsoftware.com/a-propos/demo-gchartbundle/
 How to install it?
 ------------------
 
+Thanks to [AaronDDM](http://example.com/ "AaronDDM"), you can use 
+[composer](http://packagist.org/packages/saad-tazi/g-chart-bundle "composer") to instlall the bundle. 
+Or you can use the following method:
+
   1. Add this bundle to your ``vendor/`` dir:
       * Using the vendors script.
 
@@ -113,6 +117,10 @@ But you will probably find it a little bit "painful".
 
 Mods
 ----
+
+2012-03-20
+
+* added composer support (thanks to AaronDDM)
 
 2011-10-23 
 
