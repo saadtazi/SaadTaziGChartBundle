@@ -48,10 +48,11 @@ $(function() {
 </script>   
 <hr/>
 
+<h2>linechart with options</h2>
 <div id="chart3">&nbsp;</div>
 <script>
 $(function() {
-{{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou') }}
+{{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou',{'hAxis': {'title': 'Hello',  'titleTextStyle': {'color': '#FF0000'}}}) }}
 });
 </script>
 <hr/>
