@@ -16,11 +16,11 @@
                 <h1>GChartBundle Demo</h2>
             </header>
 
-            {% if app.session.flash('notice') %}
+            {% for msg in app.session.flashbag.get('notice') %}
                 <div class="flash-message">
-                    <em>Notice</em>: {{ app.session.flash('notice') }}
+                    <em>Notice</em>: {{ msg }}
                 </div>
-            {% endif %}
+            {% endfor %}
 
             
 
