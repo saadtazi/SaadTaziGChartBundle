@@ -14,5 +14,6 @@
     "autoload": {
         "psr-0": { "SaadTazi\\GChartBundle": "" }
     },
-    "target-dir": "SaadTazi/GChartBundle"
+    "target-dir": "SaadTazi/GChartBundle",
+    "license": "MIT"
 }
