@@ -8,10 +8,8 @@
         <parameter key="twig.extension.g_chart.class">SaadTazi\GChartBundle\Twig\GChartExtension</parameter>
         <parameter key="twig.extension.visualization.template">SaadTaziGChartBundle:chart:visualizationChart.html.twig</parameter>
     </parameters>
-
+    
     <services>
-        
-        
         <service id="twig.extension.g_chart" class="%twig.extension.g_chart.class%">
             <tag name="twig.extension" alias="g_chart" />
             <argument key="twig.form.resources" type="collection">
@@ -19,7 +17,6 @@
             </argument>
              
         </service>
-        
     </services>
     
 </container>

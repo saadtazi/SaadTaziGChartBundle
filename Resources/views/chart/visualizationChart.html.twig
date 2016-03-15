@@ -1,7 +1,14 @@
-var data{{ id }} = new google.visualization.DataTable({{ data | json_encode | replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | raw }});
+var data{{ id }} = new google.visualization.DataTable({{ 
+    data | json_encode | 
+    replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | replace({")\"": ')', ")\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) |
+    raw 
+}});
 
-// Create and draw the visualization.
+{# Create and draw the visualization. #}
 var chart{{ id }} = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
+{% if events is not empty %}
+    {% for event in events %}
+        google.visualization.events.addListener(chart{{ id }}, '{{ event.eventName }}', {{ event.callbackFunc }});
+    {% endfor %}
+{% endif %}
 chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | raw }});
-
-
