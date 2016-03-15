@@ -1,7 +1,5 @@
 var data{{ id }} = new google.visualization.DataTable({{ 
-    data | json_encode | 
-    replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | replace({")\"": ')', ")\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) |
-    raw 
+    data | json_encode | replace({"\"new Date": 'new Date', "new Date\"": ""}) | replace({")\"": ')', ")\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) | raw 
 }});
 
 {# Create and draw the visualization. #}
