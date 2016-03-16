@@ -149,6 +149,7 @@ These charts needs javascript Date Objects in first column.
 As the Js Date Object need to be written (in json) like :
 
 ```
+
     [ new Date(2012, 3, 13), 37032 ],
     [ new Date(2012, 3, 14), 38024 ],
     [ new Date(2012, 3, 15), 38024 ],
@@ -159,7 +160,8 @@ As the Js Date Object need to be written (in json) like :
 
 I encountered issues with PHP and Json_encode. To avoid this you had to make your datas like this :
 
-```
+```php
+
     $datas = array(
         array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-01"), 'md' => 3),
         array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-02"), 'md' => 5),
@@ -186,19 +188,23 @@ It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', 
     [ new Date(2012, 3, 15), 38024 ],
     [ new Date(2012, 3, 16), 38108 ],
     [ new Date(2012, 3, 17), 38229 ],
+
 ```
 
 You can had a Tooltip to your datas by using this code : 
 
-```
-// 'role_tooltip' must be written as i showed because it makes all the magic.
-$res->addColumn('role_tooltip', 'Tooltip', 'string');
-// ....
-foreach($datas as $data) {
-    // js month starts at 0 for Jan !
-    $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
-    $res->addRow([['v' => "new Date[[[{$date}]]]"], ['v' => $data['md'], ['v' => "My wonderfull Tooltip for this row"]]);
-}
+```php
+
+    // 'role_tooltip' must be written as i showed because it makes all the magic.
+    $res->addColumn('role_tooltip', 'Tooltip', 'string');
+    
+    // ....
+    
+    foreach($datas as $data) {
+        // js month starts at 0 for Jan !
+        $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
+        $res->addRow([['v' => "new Date[[[{$date}]]]"], ['v' => $data['md'], ['v' => "My wonderfull Tooltip for this row"]]);
+    }
 
 ```
 
