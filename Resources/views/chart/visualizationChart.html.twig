@@ -1,7 +1,7 @@
 {% if chartType === 'Calendar' %}
-    set data= data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) 
+    {% set data= data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) %}
 {% else %}
-    set data= data | json_encode | replace({"\"new Date(": 'new Date(', "new Date\"": ""}) 
+    {% set data= data | json_encode | replace({"\"new Date(": 'new Date(', "new Date\"": ""}) %}
 {% endif %}
 var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
 
