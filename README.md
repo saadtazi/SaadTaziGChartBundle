@@ -184,11 +184,7 @@ It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', 
 
 ```
 
-    [ "new Date[[[2016, 2, 1]]]", 3 ],
-    [ new Date(2012, 3, 14), 38024 ],
-    [ new Date(2012, 3, 15), 38024 ],
-    [ new Date(2012, 3, 16), 38108 ],
-    [ new Date(2012, 3, 17), 38229 ],
+    [ "new Date[[[2016, 2, 1]]]", 3 ],....
 
 ```
 
