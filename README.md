@@ -238,7 +238,7 @@ You can define your own callback functions and associate it to the corresponding
 
 ```
 
-Have fun with thoses mods ;-)
+Have fun with those mods ;-)
 
 Mods
 ----
