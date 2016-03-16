@@ -183,6 +183,7 @@ I encountered issues with PHP and Json_encode. To avoid this you had to make you
 It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', they are substituded when needed in the twig) :
 
 ```
+
     [ "new Date[[[2016, 2, 1]]]", 3 ],
     [ new Date(2012, 3, 14), 38024 ],
     [ new Date(2012, 3, 15), 38024 ],
