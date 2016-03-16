@@ -208,6 +208,38 @@ You can had a Tooltip to your datas by using this code :
 
 ```
 
+
+Support for events
+------------------
+
+You can define your own callback functions and associate it to the corresponding chart event like this:
+
+```
+    <div id="calChart">&nbsp;</div>
+    <script>
+        $(function() {
+            var myMo = function (ee) {
+                console.log('Mouse over');
+            }
+            var myMou = function (ee) {
+                console.log('Mouse out');
+            }
+            var myR = function () {
+                console.log('Ready');
+            }
+
+            {{ gchart_calendar(calDatas, 'calChart', 950, 180, 'My cal datas', {tooltip:{isHtml: true,trigger: 'selection'}}, 
+                [{'eventName': 'ready', 'callbackFunc': 'myR'},
+                 {'eventName': 'onmouseover', 'callbackFunc': 'myMo'},
+                 {'eventName': 'onmouseout', 'callbackFunc': 'myMou'},
+          ]) }}
+        });
+    </script>
+
+```
+
+Have fun with thoses mods ;-)
+
 Mods
 ----
 
