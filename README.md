@@ -17,6 +17,24 @@ It allows to render:
   * Map tree
   * Dynamic Icons
 
+Added (special recommendations are bellow):
+
+  * Calendar
+  * Bubble Chart
+  * Donut Chart (you don't really need it as you can do it with Pie Chart and configuration but it is a shortcut)
+  * Gantt (beware gantt are betas)
+  * Geo Chart
+  * Histogram
+  * Interval
+  * Map
+  * Org Chart
+  * Sankey
+  * Stepped Area Chart
+  * Timeline
+  * Trendline
+  * Waterfall
+  * Word Tree
+
 Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/image/terms.html) and [Chart tool terms](http://code.google.com/apis/chart/interactive/terms.html) before using that bundle. 
 
 It also contains some Twig extension that facilitates the integration.
@@ -118,6 +136,106 @@ Ohh, please feel free to fork, add to it and send me pull requests!
 
 Note: You don't have to use the Twig functions: you can use the php classes (in DataTable and or in Chart).
 But you will probably find it a little bit "painful".
+
+Using the added charts
+----------------------
+
+Calendar, Interval and gantt (charts needing dates as datas) :
+
+These are special charts see https://developers.google.com/chart/interactive/docs/gallery/calendar#a-simple-example
+
+These charts needs javascript Date Objects in first column.
+
+As the Js Date Object need to be written (in json) like :
+
+```
+
+    [ new Date(2012, 3, 13), 37032 ],
+    [ new Date(2012, 3, 14), 38024 ],
+    [ new Date(2012, 3, 15), 38024 ],
+    [ new Date(2012, 3, 16), 38108 ],
+    [ new Date(2012, 3, 17), 38229 ],
+
+```
+
+I encountered issues with PHP and Json_encode. To avoid this you had to make your datas like this :
+
+```php
+
+    $datas = array(
+        array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-01"), 'md' => 3),
+        array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-02"), 'md' => 5),
+        array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-03"), 'md' => 1),
+        array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-04"), 'md' => 9),
+        array('date' => DateTime::createFromFormat ( 'Y-m-d' , "2016-03-10"), 'md' => 24),
+    );
+    $res = new DataTable();
+    $res->addColumn('date', 'Date', 'date');
+    $res->addColumn('my_datas', 'My Datas', 'number');
+    foreach($datas as $data) {
+        // js month starts at 0 for Jan !
+        $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
+        $res->addRow([['v' => "new Date[[[{$date}]]]"], ['v' => $data['md']]);
+    }
+    
+```
+
+It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', they are substituded when needed in the twig) :
+
+```
+
+    [ "new Date[[[2016, 2, 1]]]", 3 ],....
+
+```
+
+You can had a Tooltip to your datas by using this code : 
+
+```php
+
+    // 'role_tooltip' must be written as i showed because it makes all the magic.
+    $res->addColumn('role_tooltip', 'Tooltip', 'string');
+    
+    // ....
+    
+    foreach($datas as $data) {
+        // js month starts at 0 for Jan !
+        $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
+        $res->addRow([['v' => "new Date[[[{$date}]]]"], ['v' => $data['md'], ['v' => "My wonderfull Tooltip for this row"]]);
+    }
+
+```
+
+
+Support for events
+------------------
+
+You can define your own callback functions and associate it to the corresponding chart event like this:
+
+```
+    <div id="calChart">&nbsp;</div>
+    <script>
+        $(function() {
+            var myMo = function (ee) {
+                console.log('Mouse over');
+            }
+            var myMou = function (ee) {
+                console.log('Mouse out');
+            }
+            var myR = function () {
+                console.log('Ready');
+            }
+
+            {{ gchart_calendar(calDatas, 'calChart', 950, 180, 'My cal datas', {tooltip:{isHtml: true,trigger: 'selection'}}, 
+                [{'eventName': 'ready', 'callbackFunc': 'myR'},
+                 {'eventName': 'onmouseover', 'callbackFunc': 'myMo'},
+                 {'eventName': 'onmouseout', 'callbackFunc': 'myMou'},
+          ]) }}
+        });
+    </script>
+
+```
+
+Have fun with those mods ;-)
 
 Mods
 ----

@@ -1,7 +1,32 @@
-var data{{ id }} = new google.visualization.DataTable({{ data | json_encode | replace({"\"[new Date]": 'new Date', "[new Date]\"": ""}) | raw }});
+{% if chartType == 'Calendar' or chartType == 'Timeline' %}
+    {% set data = data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) %}
+{% elseif chartType == 'Interval' %}
+    {% set data = data | json_encode | replace({"\"new Date(": 'new Date(', "new Date\"": ""}) | replace({"id\":\"role_interval_": "role\": \"interval\", id: \"", "id\":\"role_interval_": "role\": \"interval\", id: \""}) %}
+{% elseif chartType == 'Gantt' %}
+    {% set data = data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({'"daysToMilliseconds[[[': 'daysToMilliseconds(', '"daysToMilliseconds[[[': 'daysToMilliseconds('}) | replace({"]]]\"": ')', "]]]\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) %}
+    var daysToMilliseconds = function (days) {
+      return days * 24 * 60 * 60 * 1000;
+    }
+{% else %}
+    {% set data = data | json_encode | replace({"\"new Date(": 'new Date(', "new Date\"": ""}) %}
+{% endif %}
+var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
 
-// Create and draw the visualization.
-var chart{{ id }} = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
+{# Create and draw the visualization. #}
+{% if chartType == 'Interval' %}
+    var chart{{ id }} = new google.visualization.LineChart(document.getElementById('{{ id }}'));
+{% elseif chartType == 'Donut' %}
+    var chart{{ id }} = new google.visualization.PieChart(document.getElementById('{{ id }}'));
+{% elseif chartType == 'Trendlines' %}
+    var chart{{ id }} = new google.visualization.ScatterChart(document.getElementById('{{ id }}'));
+{% elseif chartType == 'Waterfall' %}
+    var chart{{ id }} = new google.visualization.CandlestickChart(document.getElementById('{{ id }}'));
+{% else %}
+    var chart{{ id }} = new google.visualization.{{ chartType }}(document.getElementById('{{ id }}'));
+{% endif %}
+{% if events is not empty %}
+    {% for event in events %}
+        google.visualization.events.addListener(chart{{ id }}, '{{ event.eventName }}', {{ event.callbackFunc }});
+    {% endfor %}
+{% endif %}
 chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | raw }});
-
-
