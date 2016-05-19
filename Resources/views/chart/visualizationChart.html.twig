@@ -8,7 +8,7 @@
       return days * 24 * 60 * 60 * 1000;
     }
 {% else %}
-    {% set data = data | json_encode | replace({"\"new Date(": 'new Date(', "new Date\"": ""}) %}
+    {% set data = data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) %}
 {% endif %}
 var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
 

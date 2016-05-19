@@ -3,3 +3,6 @@
 vendor/
 composer.phar
 phpunit.phar
+
+.idea
+.idea/vcs.xml
