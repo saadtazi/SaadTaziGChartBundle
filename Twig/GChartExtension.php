@@ -81,7 +81,7 @@ class GChartExtension extends \Twig_Extension {
     /**
      * gchart_calendar definition
      */
-    public function gchartCalendar($data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
+    public function gchartCalendar(\Twig_Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
         return $this->renderGChart($env, $data, $id, 'Calendar', $width, $height, $title, $config, false, $events);
     }
 
@@ -123,14 +123,14 @@ class GChartExtension extends \Twig_Extension {
     /**
      * gchart_calendar definition
      */
-    public function gchartGantt($data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
+    public function gchartGantt(\Twig_Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
         return $this->renderGChart($env, $data, $id, 'Gantt', $width, $height, $title, $config, false, $events);
     }
 
     /**
      * gchart_gauge definition
      */
-    public function gchartGauge($data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
+    public function gchartGauge(\Twig_Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
         return $this->renderGChart($env, $data, $id, 'Gauge', $width, $height, $title, $config, false, $events);
     }
 
@@ -165,7 +165,7 @@ class GChartExtension extends \Twig_Extension {
     /**
      * gchart_map definition
      */
-    public function gchartMap($data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
+    public function gchartMap(\Twig_Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
         return $this->renderGChart($env, $data, $id, 'Map', $width, $height, $title, $config, false, $events);
     }
 
@@ -186,7 +186,7 @@ class GChartExtension extends \Twig_Extension {
     /**
      * gchart_sankey definition
      */
-    public function gchartSankey($data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
+    public function gchartSankey(\Twig_Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
         return $this->renderGChart($env, $data, $id, 'Sankey', $width, $height, $title, $config, false, $events);
     }
 
