@@ -8,8 +8,8 @@
             "name": "Saad Tazi"
         }
     ],
-    "require": {	
-        "symfony/framework-bundle": "2.*"
+    "require": {
+        "symfony/framework-bundle": "3.*"
  	},
     "autoload": {
         "psr-0": { "SaadTazi\\GChartBundle": "" }
