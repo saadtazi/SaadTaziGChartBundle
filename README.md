@@ -4,7 +4,7 @@ This is a super simple Bundle that facilitate the usage of [Google Chart Tool](h
 
 It allows to render:
 
-  * QRCode 
+  * QRCode
   * Pie Chart (3 ways: canvas or svg, simple image from url, simple 3d image from url)
   * Column Chart
   * Bar Chart
@@ -35,7 +35,7 @@ Added (special recommendations are bellow):
   * Waterfall
   * Word Tree
 
-Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/image/terms.html) and [Chart tool terms](http://code.google.com/apis/chart/interactive/terms.html) before using that bundle. 
+Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/image/terms.html) and [Chart tool terms](http://code.google.com/apis/chart/interactive/terms.html) before using that bundle.
 
 It also contains some Twig extension that facilitates the integration.
 
@@ -47,11 +47,13 @@ http://blog.fruitsoftware.com/a-propos/demo-gchartbundle/
 How to install it?
 ------------------
 
-Thanks to [AaronDDM](http://example.com/ "AaronDDM"), you can use 
-[composer](http://packagist.org/packages/saad-tazi/g-chart-bundle "composer") to instlall the bundle. 
+Thanks to [AaronDDM](http://example.com/ "AaronDDM"), you can use
+[composer](http://packagist.org/packages/saad-tazi/g-chart-bundle "composer") to instlall the bundle.
 ```
 composer require saad-tazi/g-chart-bundle
 ```
+
+> Note: Current version is `2.x`. if you are using Symfony 2, use version `1.5`.
 
 Or you can use the following method:
 
@@ -115,7 +117,7 @@ Don't forget to include the required javascript in your layout, for example:
         <script type="text/javascript">
             // adds the package you need
             google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
-        </script> 
+        </script>
 ```
 
 How to use it?
@@ -127,10 +129,10 @@ and Resources\views\Demo\demo.html.twig
 Notes
 -----
 I implemented almost all the corechart chart types from the Google Chart Tool.
-But I only implemented 3 Google Chart Image types, because 
-(<strike>they are ugly and</strike>) almost all of them can be built using 
+But I only implemented 3 Google Chart Image types, because
+(<strike>they are ugly and</strike>) almost all of them can be built using
 the Google Chart Tool.
-From the Visualization, I only implemented the marker. 
+From the Visualization, I only implemented the marker.
 
 Ohh, please feel free to fork, add to it and send me pull requests!
 
@@ -177,7 +179,7 @@ I encountered issues with PHP and Json_encode. To avoid this you had to make you
         $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
         $res->addRow([['v' => "new Date[[[{$date}]]]"], ['v' => $data['md']]);
     }
-    
+
 ```
 
 It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', they are substituded when needed in the twig) :
@@ -188,15 +190,15 @@ It gives the following json (don't get scared by the '"new Date[[[' and ']]]"', 
 
 ```
 
-You can had a Tooltip to your datas by using this code : 
+You can had a Tooltip to your datas by using this code :
 
 ```php
 
     // 'role_tooltip' must be written as i showed because it makes all the magic.
     $res->addColumn('role_tooltip', 'Tooltip', 'string');
-    
+
     // ....
-    
+
     foreach($datas as $data) {
         // js month starts at 0 for Jan !
         $date => $data['date']->format("Y, ").(intval($data['date']->format("m"))-1).$data['date']->format(", d");
@@ -225,7 +227,7 @@ You can define your own callback functions and associate it to the corresponding
                 console.log('Ready');
             }
 
-            {{ gchart_calendar(calDatas, 'calChart', 950, 180, 'My cal datas', {tooltip:{isHtml: true,trigger: 'selection'}}, 
+            {{ gchart_calendar(calDatas, 'calChart', 950, 180, 'My cal datas', {tooltip:{isHtml: true,trigger: 'selection'}},
                 [{'eventName': 'ready', 'callbackFunc': 'myR'},
                  {'eventName': 'onmouseover', 'callbackFunc': 'myMo'},
                  {'eventName': 'onmouseout', 'callbackFunc': 'myMou'},
@@ -244,11 +246,11 @@ Mods
 
 * added composer support (thanks to AaronDDM)
 
-2011-10-23 
+2011-10-23
 
 * removed jQuery dependency (and div output - needs to be done "manually" now... Provides more control)
 
-2011-09-22 
+2011-09-22
 
 * zero value bug fix
 

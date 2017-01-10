@@ -1,9 +1,9 @@
 gchart_demo:
-    pattern:  /demo
+    path:  /demo
     defaults: { _controller: SaadTaziGChartBundle:Demo:demo }
 gchart_demo2:
-    pattern:  /demo2
+    path:  /demo2
     defaults: { _controller: SaadTaziGChartBundle:Demo:demo2 }
 gchart_demo3:
-    pattern:  /demo3
-    defaults: { _controller: SaadTaziGChartBundle:Demo:demo3 }    
+    path:  /demo3
+    defaults: { _controller: SaadTaziGChartBundle:Demo:demo3 }
