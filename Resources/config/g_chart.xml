@@ -12,7 +12,7 @@
     <services>
         <service id="twig.extension.g_chart" class="%twig.extension.g_chart.class%">
             <tag name="twig.extension" alias="g_chart" />
-            <argument key="twig.form.resources" type="collection">
+            <argument key="$resources" id="%twig.form.resources%" type="collection">
                 <argument key="gChartTemplate">%twig.extension.visualization.template%</argument>
             </argument>
              
