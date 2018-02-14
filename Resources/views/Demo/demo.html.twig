@@ -5,7 +5,6 @@
 
 <div id="myTableTreeMap" style="width: 1100px;height:500px;">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_treemap(dt10, 'myTableTreeMap', 1100, 500, '', {
             'minColor': '#f00',
             'midColor': '#ddd',
@@ -13,7 +12,6 @@ $(function() {
             'headerHeight': 15,
             'fontColor': 'black',
             'showScale': true}) }}
-});
 </script>
 <hr/>
 <h2>QR Code Demo</h2>
@@ -26,131 +24,101 @@ $(function() {
 
 <div id="chart1">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_pie_chart(dataTable1, 'chart1', 400, 200, 'coucou') }}
-});
 </script>
 <hr/>
 
 <div id="chart2">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_column_chart(dataTable2, 'chart2', 400, 200, 'coucou') }}
-});
 </script>
 <hr/>
 
 <div id="chart22">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_column_chart(dataTable8, 'chart22', 400, 200, 'coucou chart 8') }}
-});
-</script>   
+</script>
 <hr/>
 
 <h2>linechart with options</h2>
 <div id="chart3">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_line_chart(dataTable2, 'chart3', 400, 200, 'coucou',{'hAxis': {'title': 'Hello',  'titleTextStyle': {'color': '#FF0000'}}}) }}
-});
 </script>
 <hr/>
 dataTable2
 <div id="chart4">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_bar_chart(dataTable2, 'chart4', 400, 200, 'coucou') }}
-});
 </script>
 <hr/>
 dataTable5
 <div id="chartfromMatrix5">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_bar_chart(dataTable5, 'chartfromMatrix5', 400, 200, 'from table5') }}
-});
 </script>
 <hr/>
 
 dataTable6
 <div id="chartfromMatrix6">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_bar_chart(dataTable6, 'chartfromMatrix6', 400, 200, 'from table6') }}
-});
 </script>
 <hr/>
 
 dataTable2
 <div id="chart5">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_area_chart(dataTable2, 'chart5', 400, 200, 'coucou') }}
-});
 </script>
 <hr/>
 
 dataTable4
 <div id="chart6">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_scatter_chart(dataTable4, 'chart6', 400, 200, 'coucou', 'x label', 'y label') }}
-});
 </script>
 <hr/>
 
 dataTable2
 <div id="chart7">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_combo_chart(dataTable2, 'chart7', 400, 200, 'line', 'combo', {'series': {1: {'type': 'bars'} } }) }}
-});
 </script>
 <hr/>
 
 dataTable1
 <div id="gauge1">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_gauge(dataTable1, 'gauge1', 400, 200, 'coucou') }}
-});
 </script>
 <hr/>
 
 dataTable2
 <div id="table1">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_table(dataTable2, 'table1') }}
-});
 </script>
 <hr/>
 
 dataTable7
 <div id="chartfromMatrix7">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_table(dataTable7, 'chartfromMatrix7', 400, 200, 'from table7') }}
-});
 </script>
 <hr/>
 
 dt
 <div id="myTable1">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_table(dt, 'myTable1') }}
-});
 </script>
 <hr/>
 
 dt9
 <div id="myTableCandleStick">&nbsp;</div>
 <script>
-$(function() {
 {{ gchart_candlestick_chart(dt9, 'myTableCandleStick', 400, 200) }}
-});
 </script>
 <hr/>
 

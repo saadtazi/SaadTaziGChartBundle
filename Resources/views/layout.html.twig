@@ -4,16 +4,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Demo Bundle{% endblock %}</title>
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            google.load("visualization", "1", {packages:["corechart", 'table', 'treemap', 'gauge']});
-            google.load('jquery', '1.6.0');
+            google.charts.load('current', {packages:["corechart", 'table', 'treemap', 'gauge']});
         </script>
     </head>
     <body>
             
             <header>
-                <h1>GChartBundle Demo</h2>
+                <h1>GChartBundle Demo</h1>
             </header>
 
             {% for msg in app.session.flashbag.get('notice') %}
@@ -28,8 +27,5 @@
                 {% block content %}
                 {% endblock %}
             </div>
-
-
-        </div>
     </body>
 </html>
