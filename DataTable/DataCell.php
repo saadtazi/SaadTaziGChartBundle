@@ -77,7 +77,12 @@ class DataCell {
         return self::getValueForArraySatic($this->v);
     }
     public static function getValueForArraySatic($value) {
-        return (is_object($value) && $value instanceof \DateTime)? '[new Date]('.($value->format('U')*1000).')[new Date]': $value;
+        if (is_object($value) && $value instanceof \DateTime) {
+            $date = $value->format('U') * 1000;
+            return "new Date[[[{$date}]]]";
+        } else {
+            return $value;
+        }
     }
     
     public function getOptions() {

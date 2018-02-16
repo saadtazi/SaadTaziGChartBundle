@@ -271,12 +271,11 @@ class DemoController extends Controller
         $dataTable->addColumn('', 'My title', 'string');
         $dataTable->addColumnObject(new DataTable\DataColumn('total', 'Caption', 'number'));
 
-        $dataTable->addRow(array('Lable', 10));
-        $dataTable->addRow(array('Lable', 0));
-        $dataTable->addRow(array('Lable', 0));
-        $dataTable->addRow(array('Lable', 5));
-        $dataTable->addRow(array('Lable', 0));
-        var_dump($dataTable);
+        $dataTable->addRow(array('Jan', 10));
+        $dataTable->addRow(array('Feb', 0));
+        $dataTable->addRow(array('Mar', 0));
+        $dataTable->addRow(array('Apr', 5));
+        $dataTable->addRow(array('May', 0));
         return $this->render(
                     'SaadTaziGChartBundle:Demo:demo3.html.twig', 
                     array(
