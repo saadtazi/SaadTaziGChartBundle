@@ -1,3 +1,5 @@
+function drawGoogleChart_{{ id }} () {
+
 {% if chartType == 'Calendar' or chartType == 'Timeline' %}
     {% set data = data | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | replace({"id\":\"role_tooltip": "role\": \"tooltip", "id\":\"role_tooltip": "role\": \"tooltip"}) %}
 {% elseif chartType == 'Interval' %}
@@ -30,3 +32,7 @@ var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
     {% endfor %}
 {% endif %}
 chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | raw }});
+
+};
+
+google.charts.setOnLoadCallback(drawGoogleChart_{{ id }});

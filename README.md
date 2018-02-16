@@ -1,6 +1,6 @@
 What is it?
 ===========
-This is a super simple Bundle that facilitate the usage of [Google Chart Tool](http://code.google.com/apis/chart/interactive/docs/index.html), [Google Chart Image API](http://code.google.com/apis/chart/image/) and [Google Infographics](http://code.google.com/apis/chart/infographics/).
+This is a super simple Bundle that facilitates the usage of [Google Chart Tool](https://developers.google.com/chart/), [Google Chart Image API](http://code.google.com/apis/chart/image/) and [Google Infographics](http://code.google.com/apis/chart/infographics/).
 
 It allows to render:
 
@@ -17,7 +17,7 @@ It allows to render:
   * Map tree
   * Dynamic Icons
 
-Added (special recommendations are bellow):
+Added (special recommendations are below):
 
   * Calendar
   * Bubble Chart
@@ -48,7 +48,7 @@ How to install it?
 ------------------
 
 Thanks to [AaronDDM](http://example.com/ "AaronDDM"), you can use
-[composer](http://packagist.org/packages/saad-tazi/g-chart-bundle "composer") to instlall the bundle.
+[composer](http://packagist.org/packages/saad-tazi/g-chart-bundle "composer") to install the bundle.
 ```
 composer require saad-tazi/g-chart-bundle
 ```
@@ -115,8 +115,8 @@ Don't forget to include the required javascript in your layout, for example:
 
 ```
         <script type="text/javascript">
-            // adds the package you need
-            google.load("visualization", "1", {packages:["corechart", 'table', 'gauge']});
+            // adds the package you need. See https://developers.google.com/chart/interactive/docs/basic_load_libs
+            google.charts.load('current', {packages:["corechart", 'table', 'gauge']});
         </script>
 ```
 
