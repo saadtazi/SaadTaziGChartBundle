@@ -100,13 +100,23 @@ Or you can use the following method:
           }
 ```
 
-Optional: If you want to see the demo page, add the following to your routing.yml (requires Twig):
+# Demo pages
+
+This is optional: If you want to see the demo page, add the following to your routing.yml:
 
 ``` yaml
     _demo:
         resource: "@SaadTaziGChartBundle/Resources/config/routing.yml"
         type:     yaml
         prefix:   /gchart
+```
+
+You should have `templating` installed (`php ../composer.phar require templating`) and should have activated it in `config/packages/framework.yml: 
+
+```
+framework:
+    templating:
+        engines: ['twig']
 ```
 
 Then you should be able to go to http://your.site.com/gchart/demo
