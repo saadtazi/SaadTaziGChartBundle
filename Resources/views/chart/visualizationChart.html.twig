@@ -32,7 +32,7 @@ var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
     {% endfor %}
 {% endif %}
 
-chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"} | raw }});
+chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | raw }});
 
 };
 
