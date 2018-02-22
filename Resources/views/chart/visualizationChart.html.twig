@@ -31,7 +31,8 @@ var data{{ id }} = new google.visualization.DataTable({{ data | raw }});
         google.visualization.events.addListener(chart{{ id }}, '{{ event.eventName }}', {{ event.callbackFunc }});
     {% endfor %}
 {% endif %}
-chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | raw }});
+
+chart{{ id }}.draw(data{{ id }}, {{ config | json_encode | replace({"\"new Date[[[": 'new Date(', "new Date\"": ""}) | replace({"]]]\"": ')', "]]]\"": ")"}) | raw }});
 
 };
 
