@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "3.* || 4.*"
+        "symfony/framework-bundle": "3.* || 4.* || 5.*"
  	},
     "autoload": {
         "psr-0": { "SaadTazi\\GChartBundle": "" }
