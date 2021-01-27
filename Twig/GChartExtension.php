@@ -100,7 +100,6 @@ class GChartExtension extends AbstractExtension {
      * gchart_column_chart definition
      */
     public function gchartColumnChart(Environment $env, $data, $id, $width, $height, $title = null, $config = array(), $events = array()) {
-//        dd($env, $data, $config);
         return $this->renderGChart($env, $data, $id, 'ColumnChart', $width, $height, $title, $config, false, $events);
     }
 
