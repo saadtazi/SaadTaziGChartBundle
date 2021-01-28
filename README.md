@@ -39,6 +39,11 @@ Make sure you read the [Chart Image terms](http://code.google.com/apis/chart/ima
 
 It also contains some Twig extension that facilitates the integration.
 
+Versions
+--------
+
+Current version of this package is `3.x` and works with Symfony 3 and 4. If you are using Symfony 2, use version `1.5`.
+
 Demo
 ----
 
@@ -52,8 +57,6 @@ Thanks to [AaronDDM](http://example.com/ "AaronDDM"), you can use
 ```
 composer require saad-tazi/g-chart-bundle
 ```
-
-> Note: Current version is `2.x`. if you are using Symfony 2, use version `1.5`.
 
 Or you can use the following method:
 
