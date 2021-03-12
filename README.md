@@ -42,9 +42,15 @@ It also contains some Twig extension that facilitates the integration.
 Versions
 --------
 
-Current version of this package is `4.x`, and works with Symfony 5.
+You should use a different version of this bundle depending on your symfony version:
 
-If you want to use it with Symfony 3 or 4, use version `3.x`. And if you are using Symfony 2, use version `1.5`.
+| Symfony version  | bundle version
+|------------------|----------------
+| 5+               | 4.x
+| sf 4.4+ (&lt; 5) | 3.2.x
+| sf 3.x to 4.3    | 3.1.1
+
+
 
 Demo
 ----
