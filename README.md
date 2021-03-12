@@ -47,7 +47,7 @@ You should use a different version of this bundle depending on your symfony vers
 | Symfony version  | bundle version
 |------------------|----------------
 | 5+               | 4.x
-| sf 4.4+ (&lt; 5) | 3.2.x
+| sf 4.4+ (&lt; 5) | 3.2.1+
 | sf 3.x to 4.3    | 3.1.1
 
 
