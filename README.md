@@ -42,7 +42,7 @@ It also contains some Twig extension that facilitates the integration.
 Versions
 --------
 
-Current version of this package is `3.x` and works with Symfony 3 and 4. If you are using Symfony 2, use version `1.5`.
+Current version of this package is `3.x` and works with Symfony 3 and 4. v3.2 should be used for symfony 4.4 and above. If you are using Symfony 2, use version `1.5`.
 
 Demo
 ----
